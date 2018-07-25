@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using strange.extensions.context.impl;
+using strange.extensions.context.api;
 using strange.framework.api;
 
 public class GameContext : MVCSContext
@@ -13,6 +14,6 @@ public class GameContext : MVCSContext
 
     protected override void mapBindings()
     {
-        Debug.Log("Binding");
+        commandBinder.Bind(ContextEvent.START).To<StartCommand>();
     }
 }
