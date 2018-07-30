@@ -14,6 +14,15 @@ public class GameContext : MVCSContext
 
     protected override void mapBindings()
     {
-        commandBinder.Bind(ContextEvent.START).To<StartCommand>();
+        //model
+        injectionBinder.Bind<IntegrationModel>().To<IntegrationModel>().ToSingleton();
+
+        //command
+        commandBinder.Bind(CommandEvent.ChangeMultiple).To<ChangeMultipleCommand>();
+
+        //view
+        mediationBinder.Bind<StartView>().To<StartMediator>();
+
+        commandBinder.Bind(ContextEvent.START).To<StartCommand>().Once();
     }
 }
